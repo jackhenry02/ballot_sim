@@ -1,15 +1,16 @@
 import pandas as pd
 
-# Load the ballot data from the CSV
-df = pd.read_csv('ballot_data.csv')
+# Load the CSV, skipping the first two rows (header and labels)
+df = pd.read_csv('ballot_data.csv', header='infer')
 
-# Example: Assuming the CSV has columns like 'room_1_choice_1', 'room_1_choice_2', ..., 'room_n_choice_5'
-# We will sum these columns for each room.
+# Convert the data to numeric, forcing errors to NaN, then drop NaN values (in case of any invalid data)
+df = df.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
 
-# Create a new column that sums up the choices for each room
-df['total_choices'] = df.iloc[:, 1:].sum(axis=1)  # Sum the columns that represent choices for each room
+# Calculate the total number of people by summing all choices and dividing by 5, then rounding the result
+total_people = df.sum().sum() / 5
 
-# Calculate the number of people (divide total choices by 5)
-num_people = df['total_choices'].sum() / 5
+# Round to the nearest integer to account for whole people
+#total_people = round(total_people)
 
-print(f'Total number of people in the ballot: {num_people}')
+print(f'Total number of people in the ballot: {total_people}')
+
