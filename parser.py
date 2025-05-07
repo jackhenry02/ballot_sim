@@ -25,7 +25,7 @@ cookies = {
     'csprod-PORTAL-PSJSESSIONID': 'pq1Z70sbj0aOW3Bxgej_o3yZWWBvYtUd!-420345374',
     'ExpirePage': 'https://camsis.cam.ac.uk/psc/ravenprod/',
     'mod_auth_openidc_session': '418fae92-b5b2-4e8d-bf20-77fa0cff3946',
-    'PHPSESSID': 'hvgle8ap7mpv26jooce13ujq26',
+    'PHPSESSID': 'hvgle8ap7mpv26jooce13ujq26',    #WILL NEED TO UPDATE THIS ONE EACH SESSION
     'PS_LASTSITE': 'https://camsis.cam.ac.uk/psc/ravenprod/',
     'PS_LOGINLIST': 'https://camsis.cam.ac.uk/ravenprod',
     'ps_theme': 'node:SA portal:EMPLOYEE theme_id:UC_860_FLUID_THEME_STUDENT css:PT_BRAND_CLASSIC_TEMPLATE_860 css_f:UC_PT_BRAND_FLUID_TEMPLATE_860 accessibility:N macroset:UC_MACROSET_860 formfactor:3 piamode:2',
