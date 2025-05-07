@@ -1,5 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
+from io import StringIO
+
+
 
 # The URL for the ballot page
 url = 'https://apps.chu.cam.ac.uk/internal/roomsballot/popularity.php'
@@ -46,13 +50,16 @@ if response.status_code == 200:
     # Parse the page with BeautifulSoup
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Find the table (assuming it's the first <table> element)
-    table = soup.find('table')
+    # Find the outer table
+    outer_table = soup.find('table')  # This will find the first table on the page (outer table)
 
-    # If the table is found, convert it into a DataFrame
-    import pandas as pd
-    df = pd.read_html(str(table))[0]
-    print(df.head())  # Print the first few rows of the table to check
+    # Find the inner table inside the outer table (you can adjust based on structure)
+    inner_table = outer_table.find_all('table')[1]  # The inner table is the second table in this case
+
+    # Convert the inner table to a DataFrame
+    df = pd.read_html(str(inner_table))[0]
+
+    print(df.head())  # Print the first few rows of the inner table to check
 
 else:
     print(f"Failed to fetch the page, status code: {response.status_code}")
