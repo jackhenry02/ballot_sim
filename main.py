@@ -54,12 +54,14 @@ if response.status_code == 200:
     outer_table = soup.find('table')  # This will find the first table on the page (outer table)
 
     # Find the inner table inside the outer table (you can adjust based on structure)
-    inner_table = outer_table.find_all('table')[1]  # The inner table is the second table in this case
+    inner_table = outer_table.find_all('table')[0]  # The inner table is the second table in this case
 
     # Convert the inner table to a DataFrame
     df = pd.read_html(str(inner_table))[0]
 
     print(df.head())  # Print the first few rows of the inner table to check
+    df.to_csv('ballot_data.csv', index=False)  # Export to CSV
+
 
 else:
     print(f"Failed to fetch the page, status code: {response.status_code}")
